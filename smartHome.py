@@ -49,7 +49,8 @@ def handle(msg):
 
 all_commands = {}
 all_commands["shoppingList"] = shoppingList.get_my_commands()
-bot = telepot.Bot('217399231:AAEH7BKYl07svmbCnqyiEVQTYYM40o_vv0w')
+token = 'Your-Token'
+bot = telepot.Bot(token)
 
 MessageLoop(bot, handle).run_as_thread()
 print 'I am listening ...'
