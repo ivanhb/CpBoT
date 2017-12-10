@@ -49,7 +49,7 @@ def handle(msg):
 
 all_commands = {}
 all_commands["shoppingList"] = shoppingList.get_my_commands()
-token = 'Your-Token'
+token = '217399231:AAEH7BKYl07svmbCnqyiEVQTYYM40o_vv0w'
 bot = telepot.Bot(token)
 
 MessageLoop(bot, handle).run_as_thread()
