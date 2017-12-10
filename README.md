@@ -6,4 +6,6 @@ In order to execute the system you need to change the value of the *token* var i
 ```python smartHome.py```
 
 Here we have a snapshot example of the chat with our bot:
+
+
 ![snap](example-chat.png)
