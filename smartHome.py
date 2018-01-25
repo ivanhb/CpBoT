@@ -10,6 +10,7 @@ import telepot
 from telepot.loop import MessageLoop
 
 import shoppingList
+import camera
 import sys
 #sys.path.insert(0, '/path/to/application/app/folder')
 import re
@@ -45,10 +46,13 @@ def handle(msg):
                 msg = str(msg) + str(command)+": "+ all_commands[module][command]["notes"]+ "\n"
             msg = msg + "\n"
 
-    bot.sendMessage(chat_id, msg)
+    bot.sendMessage(chat_id, msg["text"])
+    if "photo" in msg.keys():
+        bot.sendPhoto(chat_id, msg["photo"])
 
 all_commands = {}
 all_commands["shoppingList"] = shoppingList.get_my_commands()
+all_commands["camera"] = camera.get_my_commands()
 token = '217399231:AAEH7BKYl07svmbCnqyiEVQTYYM40o_vv0w'
 bot = telepot.Bot(token)
 

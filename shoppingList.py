@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[44]:
+# In[2]:
 
 my_commands = {
     "#addItem" : {"module": "shoppingList", "method": "add_entry", "notes":"insert item name and some notes if needed."},
@@ -24,9 +24,9 @@ def add_entry(a_text):
         notes = " ".join(a_text[1:])
     if name != "":
         shopping_list[name] = {"notes": notes}
-        return "Item '"+name+"' added"
+        return {"text":"Item '"+name+"' added"}
     else:
-        return "I will not insert an empty Item!"
+        return {"text":"I will not insert an empty Item!"}
                           
 def remove_entry(a_text):   
     name = ""
@@ -35,8 +35,8 @@ def remove_entry(a_text):
     
     if name in shopping_list:
         shopping_list.pop(name, None)
-        return "Item '"+name+"' removed"
-    return "No Item in the list with name '"+name+"'"
+        return {"text":"Item '"+name+"' removed"}
+    return {"text":"No Item in the list with name '"+name+"'"}
     
 def remove_all(a_text):
     #list_copy = shopping_list
@@ -45,7 +45,7 @@ def remove_all(a_text):
     for key in shopping_list.keys():
         shopping_list.pop(key, None)
         
-    return "All Items removed"
+    return {"text":"All Items removed"}
 
 def get_list(a_text):
     all_items = ""
@@ -53,9 +53,9 @@ def get_list(a_text):
         all_items = "- "+str(key)+" : " + str(shopping_list[key]["notes"]) +"\n" +all_items
     
     if(all_items != ""):
-        return str(all_items)
+        return {"text":str(all_items)}
     else:
-        return "No items in list!"
+        return {"text":"No items in list!"}
         
 
 
