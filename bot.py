@@ -9,23 +9,21 @@ import datetime
 import telepot
 from telepot.loop import MessageLoop
 
-import shoppingList
+import ivanhbbot
 import sys
-#sys.path.insert(0, '/path/to/application/app/folder')
-import re
 
 
 # In[73]:
 
 def handle(msg):
     chat_id = msg['chat']['id']
-    
+
     #print msg['text']
     a_text = msg['text'].split(" ")
     command = a_text[0]
-    
+
     print 'Got command: %s' % command
-    
+
     msg = ""
     found_bool = False
     #check command name
@@ -39,7 +37,7 @@ def handle(msg):
 
     if(not found_bool):
         msg = "Insert a correct command name.\n"
-        for module in all_commands.keys():   
+        for module in all_commands.keys():
             msg = msg + "In case is "+str(module)+" then the commands are:\n"
             for command in all_commands[module].keys():
                 msg = str(msg) + str(command)+": "+ all_commands[module][command]["notes"]+ "\n"
@@ -60,6 +58,3 @@ while 1:
 
 
 # In[ ]:
-
-
-
