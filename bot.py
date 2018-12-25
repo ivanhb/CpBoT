@@ -51,7 +51,7 @@ token = '217399231:AAEH7BKYl07svmbCnqyiEVQTYYM40o_vv0w'
 bot = telepot.Bot(token)
 
 MessageLoop(bot, handle).run_as_thread()
-print 'I am listening ...'
+print('I am listening ...')
 
 while 1:
     time.sleep(10)
