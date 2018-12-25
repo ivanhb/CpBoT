@@ -22,7 +22,7 @@ def handle(msg):
     a_text = msg['text'].split(" ")
     command = a_text[0]
 
-    print 'Got command: %s' % command
+    print('Got command: %s' % command)
 
     msg = ""
     found_bool = False
