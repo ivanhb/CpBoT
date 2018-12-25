@@ -1,7 +1,4 @@
 
-import requests
-import csv
-
 my_commands = {
     "/howToContactYou" : {"module": "ivanhbbot", "method": "how_to_contact_you", "notes":""},
 }

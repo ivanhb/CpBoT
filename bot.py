@@ -12,6 +12,8 @@ from telepot.loop import MessageLoop
 import ivanhbbot
 import sys
 
+import requests
+import csv
 
 # In[73]:
 
