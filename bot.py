@@ -46,7 +46,7 @@ def handle(msg):
     bot.sendMessage(chat_id, msg)
 
 all_commands = {}
-all_commands["ivanhbbot"] = shoppingList.get_my_commands()
+all_commands["ivanhbbot"] = ivanhbbot.get_my_commands()
 token = '217399231:AAEH7BKYl07svmbCnqyiEVQTYYM40o_vv0w'
 bot = telepot.Bot(token)
 
