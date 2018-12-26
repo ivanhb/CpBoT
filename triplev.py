@@ -1,7 +1,6 @@
 
 import csv
 import datetime
-from dateutil.parser import parse
 import re
 
 my_commands = {
