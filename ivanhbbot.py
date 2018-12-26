@@ -14,10 +14,10 @@ def update_date():
         'content_config.js':'https://ivanhb.github.io/content_config.js'
     }
 
-    for url_entry in urls:
-        url = urls[url_entry]
-        r = requests.get(url, allow_redirects=True)
-        open('data/'+url_entry, 'wb').write(r.content)
+    #for url_entry in urls:
+    #    url = urls[url_entry]
+    #    r = requests.get(url, allow_redirects=True)
+    #    open('data/'+url_entry, 'wb').write(r.content)
     return "Ivanhb status updated!"
 
 
