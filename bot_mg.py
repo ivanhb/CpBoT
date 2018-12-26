@@ -8,9 +8,9 @@ import random
 import datetime
 import telepot
 from telepot.loop import MessageLoop
-
-import ivanhbbot
 import sys
+
+import triplev
 
 #import requests
 
@@ -37,9 +37,9 @@ def handle(msg):
             found_bool = True
 
     if(not found_bool):
-        msg = "Insert a correct command name.\n"
+        msg = "Chiedi una delle seguenti cose:\n"
         for module in all_commands.keys():
-            msg = msg + "In case is "+str(module)+" then the commands are:\n"
+            #msg = msg + "In case is "+str(module)+" then the commands are:\n"
             for command in all_commands[module].keys():
                 msg = str(msg) + str(command)+": "+ all_commands[module][command]["notes"]+ "\n"
             msg = msg + "\n"
@@ -47,7 +47,7 @@ def handle(msg):
     bot.sendMessage(chat_id, msg)
 
 all_commands = {}
-all_commands["ivanhbbot"] = ivanhbbot.get_my_commands()
+all_commands["triplev"] = triplev.get_my_commands()
 token = '713108177:AAGGYJjhB_Pvftffz-F13xz-k5KG3XLlJGo'
 bot = telepot.Bot(token)
 
