@@ -1,9 +1,11 @@
 
+import csv
+
 my_commands = {
-    "/howToContactYou" : {"module": "ivanhbbot", "method": "how_to_contact_you", "notes":""},
+    "/howToContactYou" : {"module": "ivanhbbot", "method": "how_to_contact_you", "notes":""}
 }
 
-ivanhb = {}
+ivanhbbot = {}
 
 def get_my_commands():
     return my_commands
@@ -21,11 +23,11 @@ def update_date():
     return "Ivanhb status updated!"
 
 
-def how_to_contact_you():
+def how_to_contact_you(a_text):
     str_contacts = ""
     with open('data/ivanhbbot/contacts.csv', mode='r') as csv_file:
         csv_reader = csv.DictReader(csv_file)
         for row in csv_reader:
-            str_contacts = row['name']+": "+row['value']
+            str_contacts = str_contacts + "\n"+ row['name']+": "+row['value']
 
     return str_contacts

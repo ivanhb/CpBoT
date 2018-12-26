@@ -13,7 +13,6 @@ import ivanhbbot
 import sys
 
 #import requests
-import csv
 
 # In[73]:
 
@@ -49,7 +48,7 @@ def handle(msg):
 
 all_commands = {}
 all_commands["ivanhbbot"] = ivanhbbot.get_my_commands()
-token = '217399231:AAEH7BKYl07svmbCnqyiEVQTYYM40o_vv0w'
+token = '713108177:AAGGYJjhB_Pvftffz-F13xz-k5KG3XLlJGo'
 bot = telepot.Bot(token)
 
 MessageLoop(bot, handle).run_as_thread()
