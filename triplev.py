@@ -4,11 +4,11 @@ import datetime
 import re
 
 my_commands = {
-    "/turniPulizie" : {"module": "triplev", "method": "turni_pulizie", "notes":""},
-    "/aggiungiSpesa" : {"module": "triplev", "method": "add_entry", "notes":""},
-    "/eliminaSpesa" : {"module": "triplev", "method": "remove_entry", "notes":""},
-    "/svuotaListaSpesa" : {"module": "triplev", "method": "remove_all", "notes":""},
-    "/listaSpesa" : {"module": "triplev", "method": "get_list", "notes":""}
+    "/turniPulizie" : {"module": "triplev", "method": "turni_pulizie", " Visualizza i turni di pulizia"},
+    "/aggiungiSpesa" : {"module": "triplev", "method": "add_entry", "notes":" Aggiungi una spesa comune (esempio: 'pane,2,ivan')"},
+    "/eliminaSpesa" : {"module": "triplev", "method": "remove_entry", "notes":" Elimina una spesa comune (esempio: 'pane')"},
+    "/svuotaListaSpesa" : {"module": "triplev", "method": "remove_all", "notes":" Svuota la lista della spesa comune"},
+    "/listaSpesa" : {"module": "triplev", "method": "get_list", "notes":" Visualizza la lista della spesa comune"},
 }
 
 
@@ -35,7 +35,7 @@ def turni_pulizie(a_text):
         for row in csv_reader:
             c_data = datetime.datetime.strptime(row['Data'], '%d/%m/%Y')
             if c_data > time_now:
-                return "\n"+ "Data: "+row['Data'] + "\n" + "\n"+ "Cucina -> "+row['Cucina'] + "\n" + "\n"+ "Bagno -> "+row['Bagno'] + "\n" + "\n"+ "Corridoio -> "+row['Corridoio'] + "\n"
+                return "\n"+ "Data: "+row['Data'] + "\n"+ "Cucina -> "+row['Cucina'] + "\n"+ "Bagno -> "+row['Bagno'] + "\n"+ "Corridoio -> "+row['Corridoio'] + "\n"
                 break
 
     return str_contacts
