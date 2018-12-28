@@ -4,7 +4,7 @@ import datetime
 import re
 
 my_commands = {
-    "/turniPulizie" : {"module": "triplev", "method": "turni_pulizie", " Visualizza i turni di pulizia"},
+    "/turniPulizie" : {"module": "triplev", "method": "turni_pulizie", "notes":" Visualizza i turni di pulizia"},
     "/aggiungiSpesa" : {"module": "triplev", "method": "add_entry", "notes":" Aggiungi una spesa comune (esempio: 'pane,2,ivan')"},
     "/eliminaSpesa" : {"module": "triplev", "method": "remove_entry", "notes":" Elimina una spesa comune (esempio: 'pane')"},
     "/svuotaListaSpesa" : {"module": "triplev", "method": "remove_all", "notes":" Svuota la lista della spesa comune"},
