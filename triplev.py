@@ -96,5 +96,5 @@ def get_list(a_text):
         csv_reader = csv.DictReader(csv_file)
         all_str = all_str + "\n"+"Elemento"+"| Prezzo(Euro) |"+" Comprato da"
         for row in csv_reader:
-            all_str = all_str + "\n"+row['name']+", Prezzo: "+row['value']+", Comprato da "+row['person']
+            all_str = all_str + "\n"+row['name']+","+row['value']+" -> "+row['person']
     return all_str
