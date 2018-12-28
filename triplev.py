@@ -57,7 +57,7 @@ def add_entry(a_text):
         file = open('data/triplev/spese.csv','a')
         file.write('\n'+name+','+value+','+person)
         file.close()
-        return "Item '"+name+"' added"
+        return "Elemento '"+name+"' inserito!"
     else:
         return "Formato del messaggio non corretto! (esempio: 'pane,2,ivan')."
 

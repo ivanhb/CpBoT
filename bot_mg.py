@@ -22,6 +22,10 @@ def handle(msg):
     #print msg['text']
     a_text = msg['text'].split(" ")
     command = a_text[0]
+    if a_text[0] == '/TripleVBot':
+        a_text.pop(0)
+        if len(a_text) > 0:
+            command = a_text[0]
 
     print('Got command: %s' % command)
 
@@ -35,6 +39,7 @@ def handle(msg):
             method_to_run = getattr(module_name, all_commands[module][command]["method"])
             msg = method_to_run(a_text)
             found_bool = True
+            break
 
     if(not found_bool):
         msg = "Chiedi una delle seguenti cose:\n"
