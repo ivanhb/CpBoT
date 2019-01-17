@@ -13,7 +13,8 @@ my_commands = {
 shopping_list = {}
 
 def get_my_commands():
-    return my_commands
+    #return my_commands
+    return None
 
 def add_entry(a_text):
     name = ""
