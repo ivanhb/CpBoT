@@ -4,3 +4,5 @@ which can integrate any new module to handle different new operations. Right now
 In order to execute the system you need to change the value of the *token* variable inside [[]] with the token of your bot, and then run the python file:
 
 ```python [[]]```
+
+<img style="float:left" src="doc/logo.png" width="250"/>
