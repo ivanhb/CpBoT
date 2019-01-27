@@ -15,7 +15,7 @@ import re
 
 #TELEGRAM BOT PARAMS
 TOKEN = '713108177:AAGGYJjhB_Pvftffz-F13xz-k5KG3XLlJGo'
-BOTNAME = '/TripleVBot'
+BOTNAME = '/ivanhbBot'
 
 # Get file paths of all modules.
 MODULES_PATH = glob.glob('modules/*.py')
@@ -38,21 +38,27 @@ def handle(msg):
     found_bool = False
     #check command name
     for module in all_commands.keys():
-        if all_commands[module] != None:
-            if command in all_commands[module].keys():
+        if all_commands[module]['commands'] != None:
+            if command in all_commands[module]['commands'].keys():
                 a_text.pop(0)
-                module_name = getattr(sys.modules[__name__] ,module)
-                method_to_run = getattr(module_name, all_commands[module][command]["method"])
-                msg = method_to_run(a_text)
+
+                obj_command = all_commands[module]['commands'][command]
+
+                spec = importlib.util.spec_from_file_location(all_commands[module]['path'],module)
+                foo = importlib.util.module_from_spec(spec)
+                spec.loader.exec_module(foo)
+
+                msg = foo.exec_my_commands(obj_command['method'],a_text)
+
                 found_bool = True
                 break
 
     if(not found_bool):
-        msg = "Chiedi una delle seguenti cose:\n"
+        msg = "You can ask me:\n"
         for module in all_commands.keys():
-            if all_commands[module] != None:
-                for command in all_commands[module].keys():
-                    msg = str(msg) + str(command)+": "+ all_commands[module][command]["notes"]+ "\n"
+            if all_commands[module]['commands'] != None:
+                for command in all_commands[module]['commands'].keys():
+                    msg = str(msg) + str(command)+": "+ all_commands[module]['commands'][command]["notes"]+ "\n"
                 msg = msg + "\n"
 
     bot.sendMessage(chat_id, msg)
@@ -66,7 +72,9 @@ for m in MODULES_PATH:
     spec = importlib.util.spec_from_file_location(m_name, m)
     foo = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(foo)
-    all_commands[m] = foo.get_my_commands()
+    all_commands[m] = {}
+    all_commands[m]['path'] = m_name
+    all_commands[m]['commands'] = foo.get_my_commands()
 
 bot = telepot.Bot(TOKEN)
 
