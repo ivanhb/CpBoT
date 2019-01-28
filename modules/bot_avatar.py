@@ -39,11 +39,12 @@ def list_publications(a_text):
     csv_matrix = get_csv_file(api_call)
 
     str_to_send = ""
-    for i in range(1,len(csv_matrix)):
-        str_to_send = str_to_send + "\n"+str_to_send[i][0]
-        if csv_matrix[i][3] <> "":
-            str_to_send = str_to_send + "\n" + handle_extra_elem(csv_matrix[i][3])
-        str_to_send = str_to_send + "\n\n"
+    if csv_matrix != [] and csv_matrix != -1:
+        for i in range(1,len(csv_matrix)):
+            str_to_send = str_to_send + "\n"+str_to_send[i][0]
+            if csv_matrix[i][3] != "":
+                str_to_send = str_to_send + "\n" + handle_extra_elem(csv_matrix[i][3])
+            str_to_send = str_to_send + "\n\n"
 
     return str_to_send
 
@@ -52,22 +53,25 @@ def last_activity(a_text):
     api_call = "https://ivanhb.github.io/data/activity.csv"
     csv_matrix = get_csv_file(api_call)
 
-    str_to_send = ""
-    str_to_send += "Event: "+csv_matrix[1][0] + "\n"
-    str_to_send += "At : "+csv_matrix[1][1] + "\n"
-    str_to_send += "On : "+csv_matrix[1][2] + "\n"
-    str_to_send += "My contribution: "+csv_matrix[1][3] + "\n"
-    str_to_send += "About: "+csv_matrix[1][4] + "\n"
-    str_to_send = str_to_send + handle_extra_elem(csv_matrix[1][5])
+    if csv_matrix != [] and csv_matrix != -1:
+        str_to_send = ""
+        str_to_send += "Event: "+csv_matrix[1][0] + "\n"
+        str_to_send += "At : "+csv_matrix[1][1] + "\n"
+        str_to_send += "On : "+csv_matrix[1][2] + "\n"
+        str_to_send += "My contribution: "+csv_matrix[1][3] + "\n"
+        str_to_send += "About: "+csv_matrix[1][4] + "\n"
+        str_to_send = str_to_send + handle_extra_elem(csv_matrix[1][5])
 
     return str_to_send
 
 
 def get_csv_file(api_call):
-    contents = urllib.request.urlopen(api_call).read().decode('utf-8')
-    arr_rows = str(contents).split('\n')
-    return list(csv.reader(arr_rows))
-
+    try:
+        contents = urllib.request.urlopen(api_call).read().decode('utf-8')
+        arr_rows = str(contents).split('\n')
+        return list(csv.reader(arr_rows))
+    except Exception as e:
+        return -1
 
 def handle_extra_elem(ext_elem):
     arr_ext = ext_elem.split(']],[[')
