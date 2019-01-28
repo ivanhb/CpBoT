@@ -1,8 +1,13 @@
 <img style="float:left" src="doc/logo.png" width="250"/>
-I am using telepot: builds applications for Telegram Bot API. The current version contains a main file to communicate with the bot, 
-which can integrate any new module to handle different new operations. Right now the only module handled is a shopping list manager.
-In order to execute the system you need to change the value of the *token* variable inside [[]] with the token of your bot, and then run the python file:
+I am using telepot: a library which builds applications for Telegram Bot API. 
+The current version of CpBoT can integrate any any number of new module defined adhoc. Each module can define several commands which will be handled by the Bot. 
 
-```python [[]]```
+## Getting started
+1) Change the value of the variables ```TOKEN``` and ```BOTNAME``` in the file **main.py** with the credentials of your telegram bot.
+
+2) Define your own .py modules and add them into the directory **modules/**. Use the current modules as an example and the **guide.py** as a file guideline to build your own modules.
+
+3) Run the main file:
+```python main.py```
 
 
