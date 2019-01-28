@@ -3,16 +3,13 @@ import csv
 import urllib.request
 
 my_commands = {
-    "/howToContactYou" : {"notes":""},
+    "/howToContactYou" : {"notes":"How to contact me !"},
     "/lastActivity" : {"notes":" My last activity."},
-    "/listPublications" : {"notes":" The list of my publications."}
+    "/listPublications" : {"notes":" The list of my publications."},
+    "/listProjects" : {"notes":" The list of projects I have worked/working on."}
 }
 
-ivanhbbot = {}
-
 def get_my_commands():
-    #in case you want disable this module
-    #return {}
     return my_commands
 
 def exec_my_commands(command,param):
@@ -22,6 +19,8 @@ def exec_my_commands(command,param):
         return last_activity(param)
     elif command == "/listPublications":
         return list_publications(param)
+    elif command == "/listProjects":
+        return list_projects(param)
 
 
 def how_to_contact_you(a_text):
@@ -42,6 +41,21 @@ def list_publications(a_text):
     if csv_matrix != [] and csv_matrix != -1:
         for i in range(1,len(csv_matrix)):
             str_to_send = str_to_send + "\n"+csv_matrix[i][0]
+            if csv_matrix[i][2] != "":
+                str_to_send = str_to_send + "\n" + handle_extra_elem(csv_matrix[i][2])
+            str_to_send = str_to_send + " \n\n"
+
+    return str_to_send
+
+def list_projects(a_text):
+    str_to_return = ""
+    api_call = "https://ivanhb.github.io/data/project.csv"
+    csv_matrix = get_csv_file(api_call)
+
+    str_to_send = ""
+    if csv_matrix != [] and csv_matrix != -1:
+        for i in range(1,len(csv_matrix)):
+            str_to_send = str_to_send + "\n"+csv_matrix[i][0]+"\n"+csv_matrix[i][1]
             if csv_matrix[i][2] != "":
                 str_to_send = str_to_send + "\n" + handle_extra_elem(csv_matrix[i][2])
             str_to_send = str_to_send + " \n\n"

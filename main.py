@@ -59,7 +59,9 @@ def handle(msg):
             if all_commands[module]['commands'] != None:
                 for command in all_commands[module]['commands'].keys():
                     msg = str(msg) + str(command)+": "+ all_commands[module]['commands'][command]["notes"]+ "\n"
-                msg = msg + "\n"
+
+                if len(all_commands[module]['commands'].keys()) != 0:
+                    msg = msg + "\n"
 
     bot.sendMessage(chat_id, msg)
 

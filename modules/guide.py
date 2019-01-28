@@ -2,7 +2,9 @@
 my_commands = {
     #Add all the commands that you want the bot to handle from this module
     #e.g:  [[COMMAND-NAME]] : {"notes":[[COMMAND-DESCRIPTION]]}
-    "/howToContactYou" : {"notes":" Check how you can contact me!"},
+
+    #EXAMPLE
+    #"/howToContactYou" : {"notes":" Check how you can contact me!"},
 }
 
 ##NOTE: Always leave this method
