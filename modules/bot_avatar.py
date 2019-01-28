@@ -4,8 +4,8 @@ import urllib.request
 
 my_commands = {
     "/howToContactYou" : {"notes":""},
-    "/lastActivity" : {"notes":""},
-    "/listPublications" : {"notes":""}
+    "/lastActivity" : {"notes":" My last activity."},
+    "/listPublications" : {"notes":" The list of my publications."}
 }
 
 ivanhbbot = {}
@@ -41,10 +41,10 @@ def list_publications(a_text):
     str_to_send = ""
     if csv_matrix != [] and csv_matrix != -1:
         for i in range(1,len(csv_matrix)):
-            str_to_send = str_to_send + "\n"+str_to_send[i][0]
-            if csv_matrix[i][3] != "":
-                str_to_send = str_to_send + "\n" + handle_extra_elem(csv_matrix[i][3])
-            str_to_send = str_to_send + "\n\n"
+            str_to_send = str_to_send + "\n"+csv_matrix[i][0]
+            if csv_matrix[i][2] != "":
+                str_to_send = str_to_send + "\n" + handle_extra_elem(csv_matrix[i][2])
+            str_to_send = str_to_send + " \n\n"
 
     return str_to_send
 
