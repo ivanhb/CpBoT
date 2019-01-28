@@ -3,8 +3,8 @@ import csv
 import urllib.request
 
 my_commands = {
-    "/howToContactYou" : {"module": "bot_avatar", "method": "how_to_contact_you", "notes":""},
-    "/lastActivity" : {"module": "bot_avatar", "method": "last_activity", "notes":""}
+    "/howToContactYou" : {"notes":""},
+    "/lastActivity" : {"notes":""}
 }
 
 ivanhbbot = {}
@@ -15,9 +15,9 @@ def get_my_commands():
     return my_commands
 
 def exec_my_commands(command,param):
-    if command == "how_to_contact_you":
+    if command == "/howToContactYou":
         return how_to_contact_you(param)
-    elif command == "last_activity":
+    elif command == "/lastActivity":
         return last_activity(param)
 
 def update_date():
@@ -33,22 +33,18 @@ def update_date():
 
 
 def how_to_contact_you(a_text):
-    str_contacts = ""
-    with open('data/ivanhbbot/contacts.csv', mode='r') as csv_file:
-        csv_reader = csv.DictReader(csv_file)
-        for row in csv_reader:
-            str_contacts = str_contacts + "\n"+ row['name']+": "+row['value']
-
-    return str_contacts
+    str_to_return = ""
+    api_call = "https://ivanhb.github.io/data/contacts.csv"
+    csv_matrix = get_csv_file(api_call)
+    for c in csv_matrix:
+        str_to_return = str_to_return + "\n"+c[0]+": "+c[1]
+    return str_to_return
 
 
 def last_activity(a_text):
     str_to_return = ""
     api_call = "https://ivanhb.github.io/data/activity.csv"
-
-    contents = urllib.request.urlopen(api_call).read().decode('utf-8')
-    arr_rows = str(contents).split('\n')
-    csv_matrix = list(csv.reader(arr_rows))
+    csv_matrix = get_csv_file(api_call)
 
     str_to_send = ""
     str_to_send += "Event: "+csv_matrix[1][0] + "\n"
@@ -70,3 +66,9 @@ def last_activity(a_text):
     str_to_send = str_to_send + str_all_ext
 
     return str_to_send
+
+
+def get_csv_file(api_call):
+    contents = urllib.request.urlopen(api_call).read().decode('utf-8')
+    arr_rows = str(contents).split('\n')
+    return list(csv.reader(arr_rows))

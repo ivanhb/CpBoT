@@ -48,7 +48,7 @@ def handle(msg):
                 foo = importlib.util.module_from_spec(spec)
                 spec.loader.exec_module(foo)
 
-                msg = foo.exec_my_commands(obj_command['method'],a_text)
+                msg = foo.exec_my_commands(command,a_text)
 
                 found_bool = True
                 break
