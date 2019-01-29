@@ -56,8 +56,8 @@ def list_projects(a_text):
     if csv_matrix != [] and csv_matrix != -1:
         for i in range(1,len(csv_matrix)):
             str_to_send = str_to_send + "\n"+csv_matrix[i][0]+"\n"+csv_matrix[i][1]
-            if csv_matrix[i][2] != "":
-                str_to_send = str_to_send + "\n" + handle_extra_elem(csv_matrix[i][2])
+            if csv_matrix[i][3] != "":
+                str_to_send = str_to_send + "\n" + handle_extra_elem(csv_matrix[i][3])
             str_to_send = str_to_send + " \n\n"
 
     return str_to_send

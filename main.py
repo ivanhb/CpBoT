@@ -14,7 +14,7 @@ import importlib.util
 import re
 
 #TELEGRAM BOT PARAMS
-TOKEN = '713108177:AAGGYJjhB_Pvftffz-F13xz-k5KG3XLlJGo'
+TOKEN = '753073375:AAGbOS58cIlXiGPQNIGKi20pNISofr-YXAE'
 BOTNAME = '/ivanhbBot'
 
 # Get file paths of all modules.
