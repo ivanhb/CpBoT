@@ -3,7 +3,7 @@ import csv
 import urllib.request
 
 my_commands = {
-    "/howToContactYou" : {"notes":"How to contact me !"},
+    "/howToContactYou" : {"notes":"\e[1mHow to contact me !\e[0m"},
     "/lastActivity" : {"notes":" My last activity."},
     "/listPublications" : {"notes":" The list of my publications."},
     "/listProjects" : {"notes":" The list of projects I have worked/working on."}

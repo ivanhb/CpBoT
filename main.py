@@ -14,14 +14,15 @@ import importlib.util
 import re
 
 #TELEGRAM BOT PARAMS
-TOKEN = '753073375:AAGbOS58cIlXiGPQNIGKi20pNISofr-YXAE'
-BOTNAME = '/ivanhbBot'
+TOKEN = '552169683:AAFSmGVWFDxJlL3xp1v2ABw8xU_nkRaUhbA'
+BOTNAME = '/OpenCitationsBot'
 
 # Get file paths of all modules.
 MODULES_PATH = glob.glob('modules/*.py')
 
 
 def handle(msg):
+    parse_mode = None
     chat_id = msg['chat']['id']
 
     #print msg['text']
@@ -42,7 +43,10 @@ def handle(msg):
             if command in all_commands[module]['commands'].keys():
                 a_text.pop(0)
 
-                obj_command = all_commands[module]['commands'][command]
+                if 'parse_mode' in all_commands[module]['commands'][command]:
+                    parse_mode = all_commands[module]['commands'][command]['parse_mode']
+                else:
+                    parse_mode = None
 
                 spec = importlib.util.spec_from_file_location(all_commands[module]['path'],module)
                 foo = importlib.util.module_from_spec(spec)
@@ -63,7 +67,32 @@ def handle(msg):
                 if len(all_commands[module]['commands'].keys()) != 0:
                     msg = msg + "\n"
 
-    bot.sendMessage(chat_id, msg)
+    list_msgs = []
+    original_length = len(msg)
+    while len(msg) > 3000:
+        index = 3000
+        while True:
+            if (msg[index:index+1] == "\n"):
+                break
+            else:
+                index -= 1
+
+        list_msgs.append(msg[0:index])
+        msg = msg[index:original_length-1]
+    list_msgs.append(msg)
+    #print("send back: "+str(len(list_msgs))+" msgs.")
+    #print(list_msgs[len(list_msgs)-1])
+
+    count_msgs = 0
+    for m in list_msgs:
+        #print(m[0:10].encode())
+        #print(m[-1].encode())
+        if count_msgs >= 3:
+            bot.sendMessage(chat_id,'Too many messages to send !',parse_mode= None,disable_web_page_preview=True)
+            break
+        bot.sendMessage(chat_id,m,parse_mode= parse_mode,disable_web_page_preview=True)
+        count_msgs += 1
+        time.sleep(0.5)
 
 
 all_commands = {}
